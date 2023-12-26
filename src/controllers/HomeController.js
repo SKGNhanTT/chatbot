@@ -108,7 +108,7 @@ function handleMessage(sender_psid, received_message) {
     callSendAPI(sender_psid, response);
 }
 
-// // Handles messaging_postbacks events
+// Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
     let response;
 
