@@ -31,7 +31,7 @@ let handleGetStarted = () => {
             let response = {
                 "text": "Hello, I'm a bot. What can I do for you?"
             }
-            await this.callSendAPI(sender_psid, response);
+            await callSendAPI(sender_psid, response);
             resolve("done");
         } catch (e) {
             reject(e);
