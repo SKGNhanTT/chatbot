@@ -1,7 +1,8 @@
 require('dotenv').config();
-import request from 'request';
+import request from "request";
 
-//process.env.NAME_VARIABLES
+
+const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 let getHomePage = (req, res) => {
     return res.render('homepage.ejs');
 };
@@ -11,11 +12,14 @@ let postWebhook = (req, res) => {
 
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
+
         // Iterates over each entry - there may be multiple if batched
         body.entry.forEach(function (entry) {
+
             // Gets the body of the webhook event
             let webhook_event = entry.messaging[0];
             console.log(webhook_event);
+
 
             // Get the sender PSID
             let sender_psid = webhook_event.sender.id;
@@ -36,9 +40,10 @@ let postWebhook = (req, res) => {
         // Returns a '404 Not Found' if event is not from a page subscription
         res.sendStatus(404);
     }
-};
+}
 
 let getWebhook = (req, res) => {
+
     // Your verify token. Should be a random string.
     let VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 
@@ -49,20 +54,24 @@ let getWebhook = (req, res) => {
 
     // Checks if a token and mode is in the query string of the request
     if (mode && token) {
+
         // Checks the mode and token sent is correct
         if (mode === 'subscribe' && token === VERIFY_TOKEN) {
+
             // Responds with the challenge token from the request
             console.log('WEBHOOK_VERIFIED');
             res.status(200).send(challenge);
+
         } else {
             // Responds with '403 Forbidden' if verify tokens do not match
             res.sendStatus(403);
         }
     }
-};
+}
 
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
+
     let response;
 
     // Checks if the message contains text
@@ -70,38 +79,36 @@ function handleMessage(sender_psid, received_message) {
         // Create the payload for a basic text message, which
         // will be added to the body of our request to the Send API
         response = {
-            text: `You sent the message: "${received_message.text}". Now send me an attachment!`,
-        };
+            "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
+        }
     } else if (received_message.attachments) {
         // Get the URL of the message attachment
         let attachment_url = received_message.attachments[0].payload.url;
         response = {
-            attachment: {
-                type: 'template',
-                payload: {
-                    template_type: 'generic',
-                    elements: [
-                        {
-                            title: 'Is this the right picture?',
-                            subtitle: 'Tap a button to answer.',
-                            image_url: attachment_url,
-                            buttons: [
-                                {
-                                    type: 'postback',
-                                    title: 'Yes!',
-                                    payload: 'yes',
-                                },
-                                {
-                                    type: 'postback',
-                                    title: 'No!',
-                                    payload: 'no',
-                                },
-                            ],
-                        },
-                    ],
-                },
-            },
-        };
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [{
+                        "title": "Is this the right picture?",
+                        "subtitle": "Tap a button to answer.",
+                        "image_url": attachment_url,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Yes!",
+                                "payload": "yes",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "No!",
+                                "payload": "no",
+                            }
+                        ],
+                    }]
+                }
+            }
+        }
     }
 
     // Send the response message
@@ -117,9 +124,9 @@ function handlePostback(sender_psid, received_postback) {
 
     // Set the response based on the postback payload
     if (payload === 'yes') {
-        response = { text: 'Thanks!' };
+        response = { "text": "Thanks!" }
     } else if (payload === 'no') {
-        response = { text: 'Oops, try sending another image.' };
+        response = { "text": "Oops, try sending another image." }
     }
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
@@ -129,32 +136,56 @@ function handlePostback(sender_psid, received_postback) {
 function callSendAPI(sender_psid, response) {
     // Construct the message body
     let request_body = {
-        recipient: {
-            id: sender_psid,
+        "recipient": {
+            "id": sender_psid
         },
-        message: response,
+        "message": response
+    }
+
+    // Send the HTTP request to the Messenger Platform
+    request({
+        "uri": "https://graph.facebook.com/v2.6/me/messages",
+        "qs": { "access_token": PAGE_ACCESS_TOKEN },
+        "method": "POST",
+        "json": request_body
+    }, (err, res, body) => {
+        if (!err) {
+            console.log('message sent!')
+        } else {
+            console.error("Unable to send message:" + err);
+        }
+    });
+}
+
+let setupProfile = async(req, res) => {
+    // call api facebook api
+     // Construct the message body
+     let request_body = {
+        "get_started": { "payload": "GET_STARTED" },
+        "whitelisted_domains": ["https://chatbot-booking-health-car3.onrender.com/"]
     };
 
     // Send the HTTP request to the Messenger Platform
-    request(
-        {
-            uri: 'https://graph.facebook.com/v2.6/me/messages',
-            qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
-            method: 'POST',
-            json: request_body,
-        },
-        (err, res, body) => {
-            if (!err) {
-                console.log('message sent!');
-            } else {
-                console.error('Unable to send message:' + err);
-            }
+    await request({
+        "uri": `https://graph.facebook.com/v18.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+        "qs": { "access_token": PAGE_ACCESS_TOKEN },
+        "method": "POST",
+        "json": request_body
+    }, (err, res, body) => {
+        console.log(body);
+        if (!err) {
+            console.log('setup user profile success!')
+        } else {
+            console.error("Unable setup user profile:" + err);
         }
-    );
+    });
+    return res.send("Setup user profile success!");
+   
 }
 
 module.exports = {
     getHomePage: getHomePage,
     postWebhook: postWebhook,
     getWebhook: getWebhook,
+    setupProfile: setupProfile,
 };
