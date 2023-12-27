@@ -11,26 +11,35 @@
             <button type="submit">Setup profile</button>
         </form>
 
-        <div id="fb-root"></div>
-        <script>
-            window.fbAsyncInit = function() {
-                FB.init({
-                    xfbml      : true,
-                    version    : 'v9.0'
-                });
+        <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
 
-            };
-            (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {return;}
-                js = d.createElement(s); js.id = id;
-                js.src = "https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'))
-        </script>
-        <div class="fb-customerchat" attribution="setup-tool" page_id="61554766091107" theme_color="#0084ff"
-            logged_in_greeting="Xin chào, tôi có thể giúp gì cho bạn?"
-            logged_out_greeting="Xin chào, tôi có thể giúp gì cho bạn?"
-        ></div>
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "220273341158934");
+      chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v18.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
     </body>
 </html>
