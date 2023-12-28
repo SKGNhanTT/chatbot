@@ -21,7 +21,7 @@ let callSendAPI = (sender_psid, response) => {
             method: 'POST',
             json: request_body,
         },
-        (err, res, body) => {
+        (err, res) => {
             if (!err) {
                 console.log('message sent!');
             } else {
@@ -34,7 +34,7 @@ let callSendAPI = (sender_psid, response) => {
 let getUserName = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         // Send the HTTP request to the Messenger Platform
-        await request(
+        request(
             {
                 uri: `https://graph.facebook.com/${sender_psid}?fields=first_name,last_name,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`,
                 qs: { access_token: PAGE_ACCESS_TOKEN },
@@ -58,13 +58,13 @@ let handleGetStarted = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let username = await getUserName(sender_psid);
-            // let response1 = {
-            //     text: `Hello ${username}, I'm a bot. What can I do for you?`,
-            // };
-            let response2 = await sendGetStarted();
+            let response1 = {
+                text: `Hello ${username}, I'm a bot. What can I do for you?`,
+            };
+            let response2 = sendGetStarted();
             console.log('check response2', response2);
-            // await callSendAPI(sender_psid, response1);
-            await callSendAPI(sender_psid, response2);
+            callSendAPI(sender_psid, response1);
+            callSendAPI(sender_psid, response2);
             resolve('done');
         } catch (e) {
             reject(e);
