@@ -80,7 +80,7 @@ let sendGetStartedTemplate = async () => {
         attachment: {
             type: 'template',
             payload: {
-                template_type: 'generic',
+                template_type: 'TEMPLATE-TYPE',
                 elements: [
                     {
                         title: 'Xin chhào mừng bạn đến với Booking Health Care!',
