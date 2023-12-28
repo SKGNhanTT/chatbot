@@ -34,7 +34,7 @@ let callSendAPI = (sender_psid, response) => {
 let getUserName = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         // Send the HTTP request to the Messenger Platform
-        await request(
+        request(
             {
                 uri: `https://graph.facebook.com/${sender_psid}?fields=first_name,last_name,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`,
                 qs: { access_token: PAGE_ACCESS_TOKEN },
@@ -61,24 +61,12 @@ let handleGetStarted = (sender_psid) => {
             let response1 = {
                 text: `Hello ${username}, I'm a bot. What can I do for you?`,
             };
-            // let response2 = sendGetStartedTemplate();
+            let response2 = sendGetStartedTemplate(sender_psid);
 
-            await callSendAPI(sender_psid, response1);
-            // await callSendAPI(sender_psid, response2);
-            resolve('done');
-        } catch (e) {
-            reject(e);
-        }
-    });
-};
-let handleGetStarted2 = (sender_psid) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let username = await getUserName(sender_psid);
+            console.log('check response2', response2);
 
-            let response2 = sendGetStartedTemplate();
-
-            await callSendAPI(sender_psid, response2);
+            callSendAPI(sender_psid, response1);
+            callSendAPI(sender_psid, response2);
             resolve('done');
         } catch (e) {
             reject(e);
@@ -86,7 +74,8 @@ let handleGetStarted2 = (sender_psid) => {
     });
 };
 
-let sendGetStartedTemplate = () => {
+let sendGetStartedTemplate = async (sender_psid) => {
+    let username = await getUserName(sender_psid);
     let response = {
         attachment: {
             type: 'template',
@@ -129,5 +118,4 @@ let sendGetStartedTemplate = () => {
 
 module.exports = {
     handleGetStarted: handleGetStarted,
-    handleGetStarted2: handleGetStarted2,
 };
