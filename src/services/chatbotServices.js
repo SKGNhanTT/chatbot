@@ -76,7 +76,7 @@ let handleGetStarted = (sender_psid) => {
 };
 
 let sendGetStartedTemplate = async () => {
-    let response = {
+    return {
         attachment: {
             type: 'template',
             payload: {
@@ -113,7 +113,6 @@ let sendGetStartedTemplate = async () => {
             },
         },
     };
-    return response;
 };
 
 module.exports = {
