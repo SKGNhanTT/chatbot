@@ -54,21 +54,19 @@ let getUserName = (sender_psid) => {
     });
 };
 
-let handleGetStarted = (sender_psid) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let username = await getUserName(sender_psid);
-            let response1 = {
-                text: `Hello ${username}, I'm a bot. What can I do for you?`,
-            };
-            let response2 = await sendGetStarted();
-            await callSendAPI(sender_psid, response1);
-            await callSendAPI(sender_psid, response2);
-            resolve('done');
-        } catch (e) {
-            reject(e);
-        }
-    });
+let handleGetStarted = async (sender_psid) => {
+    try {
+        let username = await getUserName(sender_psid);
+        let response1 = {
+            text: `Hello ${username}, I'm a bot. What can I do for you?`,
+        };
+        let response2 = sendGetStarted();
+        await callSendAPI(sender_psid, response1);
+        await callSendAPI(sender_psid, response2);
+        return 'done';
+    } catch (e) {
+        throw e;
+    }
 };
 
 let sendGetStarted = () => {
