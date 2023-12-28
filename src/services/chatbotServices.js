@@ -61,9 +61,23 @@ let handleGetStarted = (sender_psid) => {
             let response1 = {
                 text: `Hello ${username}, I'm a bot. What can I do for you?`,
             };
-            let response2 = sendGetStartedTemplate();
+            // let response2 = sendGetStartedTemplate();
 
             await callSendAPI(sender_psid, response1);
+            // await callSendAPI(sender_psid, response2);
+            resolve('done');
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+let handleGetStarted2 = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let username = await getUserName(sender_psid);
+
+            let response2 = sendGetStartedTemplate();
+
             await callSendAPI(sender_psid, response2);
             resolve('done');
         } catch (e) {
@@ -115,4 +129,5 @@ let sendGetStartedTemplate = () => {
 
 module.exports = {
     handleGetStarted: handleGetStarted,
+    handleGetStarted2: handleGetStarted2,
 };
