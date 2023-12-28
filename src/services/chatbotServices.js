@@ -61,7 +61,7 @@ let handleGetStarted = (sender_psid) => {
             let response1 = {
                 text: `Hello ${username}, I'm a bot. What can I do for you?`,
             };
-            let response2 = sendGetStarted(sender_psid);
+            let response2 = sendGetStarted();
             await callSendAPI(sender_psid, response1);
             await callSendAPI(sender_psid, response2);
             resolve('done');
@@ -71,7 +71,7 @@ let handleGetStarted = (sender_psid) => {
     });
 };
 
-let sendGetStarted = (sender_psid) => {
+let sendGetStarted = () => {
     let response = {
         attachment: {
             type: 'template',
