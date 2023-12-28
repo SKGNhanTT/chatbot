@@ -61,7 +61,10 @@ let handleGetStarted = (sender_psid) => {
             let response1 = {
                 text: `Hello ${username}, I'm a bot. What can I do for you?`,
             };
-            let response2 = await sendGetStarted();
+            // let response2 = await sendGetStarted();
+            let response2 = {
+                text: `Hello ${username}, I'm a bot. What can I do for you?`,
+            };
             await callSendAPI(sender_psid, response1);
             await callSendAPI(sender_psid, response2);
             resolve('done');
