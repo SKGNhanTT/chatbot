@@ -62,7 +62,7 @@ let handleGetStarted = (sender_psid) => {
             let response1 = {
                 text: `Hello ${username}, I'm a bot. What can I do for you?`,
             };
-            let response2 = { ...sendGetStartedTemplate() };
+            let response2 = sendGetStartedTemplate();
 
             console.log('check response2', response2);
 
@@ -76,7 +76,7 @@ let handleGetStarted = (sender_psid) => {
 };
 
 let sendGetStartedTemplate = async () => {
-    return {
+    let response = {
         attachment: {
             type: 'template',
             payload: {
@@ -113,6 +113,7 @@ let sendGetStartedTemplate = async () => {
             },
         },
     };
+    return response;
 };
 
 module.exports = {
