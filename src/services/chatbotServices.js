@@ -66,7 +66,7 @@ let handleGetStarted = (sender_psid) => {
             console.log('check response2', response2);
 
             callSendAPI(sender_psid, response1);
-            callSendAPI(sender_psid, response2);
+            await callSendAPI(sender_psid, response2);
             resolve('done');
         } catch (e) {
             reject(e);
