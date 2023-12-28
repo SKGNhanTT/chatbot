@@ -4,7 +4,7 @@ require('dotenv').config();
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const IMAGE_GET_STARTED =
     'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png';
-let callSendAPI = (sender_psid, response) => {
+let callSendAPI = async (sender_psid, response) => {
     // Construct the message body
     let request_body = {
         recipient: {
@@ -14,14 +14,14 @@ let callSendAPI = (sender_psid, response) => {
     };
 
     // Send the HTTP request to the Messenger Platform
-    request(
+    await request(
         {
             uri: 'https://graph.facebook.com/v2.6/me/messages',
             qs: { access_token: PAGE_ACCESS_TOKEN },
             method: 'POST',
             json: request_body,
         },
-        (err, res) => {
+        (err, res, body) => {
             if (!err) {
                 console.log('message sent!');
             } else {
@@ -34,7 +34,7 @@ let callSendAPI = (sender_psid, response) => {
 let getUserName = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         // Send the HTTP request to the Messenger Platform
-        request(
+        await request(
             {
                 uri: `https://graph.facebook.com/${sender_psid}?fields=first_name,last_name,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`,
                 qs: { access_token: PAGE_ACCESS_TOKEN },
@@ -61,10 +61,9 @@ let handleGetStarted = (sender_psid) => {
             let response1 = {
                 text: `Hello ${username}, I'm a bot. What can I do for you?`,
             };
-            let response2 = sendGetStarted();
-            console.log('check response2', response2);
-            callSendAPI(sender_psid, response1);
-            callSendAPI(sender_psid, response2);
+            let response2 = await sendGetStarted();
+            await callSendAPI(sender_psid, response1);
+            await callSendAPI(sender_psid, response2);
             resolve('done');
         } catch (e) {
             reject(e);
