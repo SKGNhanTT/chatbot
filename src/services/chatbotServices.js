@@ -12,6 +12,7 @@ let callSendAPI = (sender_psid, response) => {
         },
         message: response,
     };
+    console.log('check message', request_body.message);
 
     // Send the HTTP request to the Messenger Platform
     request(
@@ -76,41 +77,39 @@ let handleGetStarted = (sender_psid) => {
 
 let sendGetStartedTemplate = async () => {
     let response = {
-        message: {
-            attachment: {
-                type: 'template',
-                payload: {
-                    template_type: 'generic',
-                    elements: [
-                        {
-                            title: 'Xin chhào mừng bạn đến với Booking Health Care!',
-                            subtitle: 'Dưới đây là các lựa chọn',
-                            image_url: IMAGE_GET_STARTED,
-                            buttons: [
-                                {
-                                    type: 'postback',
-                                    title: 'How to Book?',
-                                    payload: 'BOOKING',
-                                },
-                                {
-                                    type: 'postback',
-                                    title: 'View doctors',
-                                    payload: 'VIEW_DOCTORS',
-                                },
-                                {
-                                    type: 'postback',
-                                    title: 'View specialities',
-                                    payload: 'VIEW_SPECIALITIES',
-                                },
-                                {
-                                    type: 'postback',
-                                    title: 'GUIDE TO USE',
-                                    payload: 'GUIDE_TO_USE',
-                                },
-                            ],
-                        },
-                    ],
-                },
+        attachment: {
+            type: 'template',
+            payload: {
+                template_type: 'generic',
+                elements: [
+                    {
+                        title: 'Xin chhào mừng bạn đến với Booking Health Care!',
+                        subtitle: 'Dưới đây là các lựa chọn',
+                        image_url: IMAGE_GET_STARTED,
+                        buttons: [
+                            {
+                                type: 'postback',
+                                title: 'How to Book?',
+                                payload: 'BOOKING',
+                            },
+                            {
+                                type: 'postback',
+                                title: 'View doctors',
+                                payload: 'VIEW_DOCTORS',
+                            },
+                            {
+                                type: 'postback',
+                                title: 'View specialities',
+                                payload: 'VIEW_SPECIALITIES',
+                            },
+                            {
+                                type: 'postback',
+                                title: 'GUIDE TO USE',
+                                payload: 'GUIDE_TO_USE',
+                            },
+                        ],
+                    },
+                ],
             },
         },
     };
