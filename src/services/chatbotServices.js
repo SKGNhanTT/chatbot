@@ -4,7 +4,7 @@ require('dotenv').config();
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const IMAGE_GET_STARTED =
     'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png';
-let callSendAPI = async (sender_psid, response) => {
+let callSendAPI = (sender_psid, response) => {
     // Construct the message body
     let request_body = {
         recipient: {
@@ -14,7 +14,7 @@ let callSendAPI = async (sender_psid, response) => {
     };
 
     // Send the HTTP request to the Messenger Platform
-    await request(
+    request(
         {
             uri: 'https://graph.facebook.com/v2.6/me/messages',
             qs: { access_token: PAGE_ACCESS_TOKEN },
@@ -54,22 +54,25 @@ let getUserName = (sender_psid) => {
     });
 };
 
-let handleGetStarted = async (sender_psid) => {
-    try {
-        let username = await getUserName(sender_psid);
-        let response1 = {
-            text: `Hello ${username}, I'm a bot. What can I do for you?`,
-        };
-        let response2 = sendGetStarted();
-        await callSendAPI(sender_psid, response1);
-        await callSendAPI(sender_psid, response2);
-        return 'done';
-    } catch (e) {
-        throw e;
-    }
+let handleGetStarted = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let username = await getUserName(sender_psid);
+            let response1 = {
+                text: `Hello ${username}, I'm a bot. What can I do for you?`,
+            };
+            let response2 = sendGetStartedTemplate();
+
+            await callSendAPI(sender_psid, response1);
+            await callSendAPI(sender_psid, response2);
+            resolve('done');
+        } catch (e) {
+            reject(e);
+        }
+    });
 };
 
-let sendGetStarted = () => {
+let sendGetStartedTemplate = () => {
     let response = {
         attachment: {
             type: 'template',
