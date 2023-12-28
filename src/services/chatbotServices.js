@@ -109,7 +109,7 @@ let sendGetStarted = (sender_psid) => {
             },
         },
     };
-    return ``;
+    return response;
 };
 
 module.exports = {
