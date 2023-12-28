@@ -62,7 +62,7 @@ let handleGetStarted = (sender_psid) => {
             let response1 = {
                 text: `Hello ${username}, I'm a bot. What can I do for you?`,
             };
-            let response2 = sendGetStartedTemplate();
+            let response2 = { ...sendGetStartedTemplate() };
 
             console.log('check response2', response2);
 
