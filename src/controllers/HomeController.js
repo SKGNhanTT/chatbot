@@ -136,7 +136,8 @@ async function handlePostback(sender_psid, received_postback) {
                             {
                                 title: 'Xin chhào mừng bạn đến với Booking Health Care!',
                                 subtitle: 'Dưới đây là các lựa chọn',
-                                image_url: IMAGE_GET_STARTED,
+                                image_url:
+                                    'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png',
                                 buttons: [
                                     {
                                         type: 'postback',
