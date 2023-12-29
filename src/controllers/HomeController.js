@@ -127,7 +127,34 @@ async function handlePostback(sender_psid, received_postback) {
             break;
         case 'GET_STARTED':
             // await chatbotServices.handleGetStarted(sender_psid);
-            response = await chatbotServices.handleGetStarted2();
+            response = {
+                attachment: {
+                    type: 'template',
+                    payload: {
+                        template_type: 'generic',
+                        elements: [
+                            {
+                                title: 'Is this the right picture?',
+                                subtitle: 'Tap a button to answer.',
+                                image_url:
+                                    'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png',
+                                buttons: [
+                                    {
+                                        type: 'postback',
+                                        title: 'Yes!',
+                                        payload: 'yes',
+                                    },
+                                    {
+                                        type: 'postback',
+                                        title: 'No!',
+                                        payload: 'no',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                },
+            };
             // handleMessage(sender_psid);
             break;
         default:
