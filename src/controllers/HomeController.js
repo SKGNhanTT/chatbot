@@ -154,11 +154,11 @@ async function handlePostback(sender_psid, received_postback) {
                                         title: 'View doctors',
                                         payload: 'VIEW_DOCTORS',
                                     },
-                                    {
-                                        type: 'postback',
-                                        title: 'Guide To Use',
-                                        payload: 'GUIDE_TO_USE',
-                                    },
+                                    // {
+                                    //     type: 'postback',
+                                    //     title: 'Guide To Use',
+                                    //     payload: 'GUIDE_TO_USE',
+                                    // },
                                 ],
                             },
                         ],
