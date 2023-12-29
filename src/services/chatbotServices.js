@@ -83,27 +83,29 @@ let sendGetStartedTemplate = async () => {
                 template_type: 'generic',
                 elements: [
                     {
-                        title: 'Welcome!',
-                        image_url:
-                            'https://petersfancybrownhats.com/company_image.png',
-                        subtitle: 'We have the right hat for everyone.',
-                        default_action: {
-                            type: 'web_url',
-                            url: 'https://petersfancybrownhats.com/view?item=103',
-                            messenger_extensions: false,
-                            webview_height_ratio: 'tall',
-                            fallback_url: 'https://petersfancybrownhats.com/',
-                        },
+                        title: 'Xin chhào mừng bạn đến với Booking Health Care!',
+                        subtitle: 'Dưới đây là các lựa chọn',
+                        image_url: IMAGE_GET_STARTED,
                         buttons: [
                             {
-                                type: 'web_url',
-                                url: 'https://petersfancybrownhats.com',
-                                title: 'View Website',
+                                type: 'postback',
+                                title: 'How to Book?',
+                                payload: 'BOOKING',
                             },
                             {
                                 type: 'postback',
-                                title: 'Start Chatting',
-                                payload: 'DEVELOPER_DEFINED_PAYLOAD',
+                                title: 'View doctors',
+                                payload: 'VIEW_DOCTORS',
+                            },
+                            {
+                                type: 'postback',
+                                title: 'View specialities',
+                                payload: 'VIEW_SPECIALITIES',
+                            },
+                            {
+                                type: 'postback',
+                                title: 'GUIDE TO USE',
+                                payload: 'GUIDE_TO_USE',
                             },
                         ],
                     },
