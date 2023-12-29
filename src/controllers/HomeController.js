@@ -125,10 +125,9 @@ async function handlePostback(sender_psid, received_postback) {
         case 'no':
             response = { text: 'Oops, try sending another image.' };
             break;
+        case 'RESTART_CONVERSATION':
         case 'GET_STARTED':
             await chatbotServices.handleGetStarted(sender_psid);
-
-            // handleMessage(sender_psid);
             break;
         default:
             response = { text: `I don't understand this action. ${payload}.` };
@@ -198,9 +197,53 @@ let setupProfile = async (req, res) => {
     return res.send('Setup user profile success!');
 };
 
+let setupPersistentMenu = async (req, res) => {
+    let request_body = {
+        persistent_menu: [
+            {
+                locale: 'default',
+                composer_input_disabled: false,
+                call_to_actions: [
+                    {
+                        type: 'web_url',
+                        title: 'Facebook Fanpage',
+                        url: 'https://www.facebook.com/profile.php?id=61554766091107',
+                        webview_height_ratio: 'full',
+                    },
+                    {
+                        type: 'postback',
+                        title: 'Restart this conversation',
+                        payload: 'RESTART_CONVERSATION',
+                    },
+                ],
+            },
+        ],
+    };
+
+    // Send the HTTP request to the Messenger Platform
+    await request(
+        {
+            uri: `https://graph.facebook.com/v18.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+            qs: { access_token: PAGE_ACCESS_TOKEN },
+            method: 'POST',
+            json: request_body,
+        },
+        (err, res, body) => {
+            console.log(body);
+            if (!err) {
+                console.log('setup persistent menu success!');
+            } else {
+                console.error('Unable persistent menu :' + err);
+            }
+        }
+    );
+    return res.send('Setup persistent menu success!');
+};
+
 module.exports = {
     getHomePage: getHomePage,
     postWebhook: postWebhook,
     getWebhook: getWebhook,
     setupProfile: setupProfile,
+    setupPersistentMenu: setupPersistentMenu,
 };
