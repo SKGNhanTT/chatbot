@@ -2,8 +2,7 @@ import request from 'request';
 require('dotenv').config();
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
-const IMAGE_GET_STARTED =
-    'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png';
+
 let callSendAPI = (sender_psid, response) => {
     // Construct the message body
     let request_body = {
@@ -13,7 +12,6 @@ let callSendAPI = (sender_psid, response) => {
 
         message: response,
     };
-    console.log('check message', request_body.message);
 
     // Send the HTTP request to the Messenger Platform
     request(
@@ -60,7 +58,7 @@ let handleGetStarted = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let username = await getUserName(sender_psid);
-            let response1 = {
+            let response = {
                 text: `Hello ${username}, I'm a bot. What can I do for you?`,
             };
             // let response2 = {
@@ -101,11 +99,7 @@ let handleGetStarted = (sender_psid) => {
             //     },
             // };
 
-            console.log('check response1', response1);
-            // console.log('check response2', response2);
-
-            callSendAPI(sender_psid, response1);
-            // callSendAPI(sender_psid, response2);
+            callSendAPI(sender_psid, response);
             resolve('done');
         } catch (e) {
             reject(e);
@@ -113,100 +107,6 @@ let handleGetStarted = (sender_psid) => {
     });
 };
 
-let handleGetStarted2 = () => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let response = {
-                attachment: {
-                    type: 'template',
-                    payload: {
-                        template_type: 'generic',
-                        elements: [
-                            {
-                                title: 'Xin chhào mừng bạn đến với Booking Health Care!',
-                                subtitle: 'Dưới đây là các lựa chọn',
-                                image_url: IMAGE_GET_STARTED,
-                                buttons: [
-                                    {
-                                        type: 'postback',
-                                        title: 'How to Book?',
-                                        payload: 'BOOKING',
-                                    },
-                                    {
-                                        type: 'postback',
-                                        title: 'View doctors',
-                                        payload: 'VIEW_DOCTORS',
-                                    },
-                                    {
-                                        type: 'postback',
-                                        title: 'View specialities',
-                                        payload: 'VIEW_SPECIALITIES',
-                                    },
-                                    {
-                                        type: 'postback',
-                                        title: 'GUIDE TO USE',
-                                        payload: 'GUIDE_TO_USE',
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                },
-            };
-
-            console.log('check response2', response);
-
-            resolve({ ...response });
-        } catch (e) {
-            reject(e);
-        }
-    });
-};
-
-// let sendGetStartedTemplate = async () => {
-//     let response = {
-//         attachment: {
-//             type: 'template',
-//             payload: {
-//                 template_type: 'generic',
-//                 elements: [
-//                     {
-//                         title: 'Xin chhào mừng bạn đến với Booking Health Care!',
-//                         subtitle: 'Dưới đây là các lựa chọn',
-//                         image_url: IMAGE_GET_STARTED,
-//                         buttons: [
-//                             {
-//                                 type: 'postback',
-//                                 title: 'How to Book?',
-//                                 payload: 'BOOKING',
-//                             },
-//                             {
-//                                 type: 'postback',
-//                                 title: 'View doctors',
-//                                 payload: 'VIEW_DOCTORS',
-//                             },
-//                             {
-//                                 type: 'postback',
-//                                 title: 'View specialities',
-//                                 payload: 'VIEW_SPECIALITIES',
-//                             },
-//                             {
-//                                 type: 'postback',
-//                                 title: 'GUIDE TO USE',
-//                                 payload: 'GUIDE_TO_USE',
-//                             },
-//                         ],
-//                     },
-//                 ],
-//             },
-//         },
-
-//     }
-
-//     return response;
-// };
-
 module.exports = {
     handleGetStarted: handleGetStarted,
-    handleGetStarted2: handleGetStarted2,
 };
