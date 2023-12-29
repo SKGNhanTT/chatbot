@@ -113,7 +113,7 @@ let sendGetStartedTemplate = async () => {
     //         },
     //     },
 
-    response = {
+    let response = {
         attachment: {
             type: 'template',
             payload: {
