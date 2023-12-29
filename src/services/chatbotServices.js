@@ -156,7 +156,6 @@ let handleGetStarted2 = () => {
 
             console.log('check response2', response);
 
-            callSendAPI(sender_psid, response);
             resolve({ response });
         } catch (e) {
             reject(e);
