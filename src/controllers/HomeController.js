@@ -85,8 +85,7 @@ function handleMessage(sender_psid, received_message) {
                         {
                             title: 'Is this the right picture?',
                             subtitle: 'Tap a button to answer.',
-                            image_url:
-                                'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png',
+                            image_url: attachment_url,
                             buttons: [
                                 {
                                     type: 'postback',
@@ -126,9 +125,7 @@ async function handlePostback(sender_psid, received_postback) {
             response = { text: 'Oops, try sending another image.' };
             break;
         case 'GET_STARTED':
-            // await chatbotServices.handleGetStarted(sender_psid);
-            handleMessage(sender_psid, webhook_event.message);
-
+            await chatbotServices.handleGetStarted(sender_psid);
             break;
         default:
             response = { text: `I don't understand this action. ${payload}.` };
