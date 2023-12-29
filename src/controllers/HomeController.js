@@ -134,8 +134,8 @@ async function handlePostback(sender_psid, received_postback) {
                         template_type: 'generic',
                         elements: [
                             {
-                                title: 'Is this the right picture?',
-                                subtitle: 'Tap a button to answer.',
+                                title: 'What can I do for you?',
+                                subtitle: 'Here is the guide on how to use.',
                                 image_url:
                                     'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png',
                                 buttons: [

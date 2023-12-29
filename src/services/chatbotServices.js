@@ -59,7 +59,7 @@ let handleGetStarted = (sender_psid) => {
         try {
             let username = await getUserName(sender_psid);
             let response = {
-                text: `Hello ${username}, I'm a bot. What can I do for you?`,
+                text: `Hello ${username}, Welcome to Booking Health Care!`,
             };
             // let response2 = {
             //     attachment: {
