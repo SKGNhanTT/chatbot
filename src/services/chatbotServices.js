@@ -63,49 +63,49 @@ let handleGetStarted = (sender_psid) => {
             let response1 = {
                 text: `Hello ${username}, I'm a bot. What can I do for you?`,
             };
-            let response2 = {
-                attachment: {
-                    type: 'template',
-                    payload: {
-                        template_type: 'generic',
-                        elements: [
-                            {
-                                title: 'Xin chhào mừng bạn đến với Booking Health Care!',
-                                subtitle: 'Dưới đây là các lựa chọn',
-                                image_url: IMAGE_GET_STARTED,
-                                buttons: [
-                                    {
-                                        type: 'postback',
-                                        title: 'How to Book?',
-                                        payload: 'BOOKING',
-                                    },
-                                    {
-                                        type: 'postback',
-                                        title: 'View doctors',
-                                        payload: 'VIEW_DOCTORS',
-                                    },
-                                    {
-                                        type: 'postback',
-                                        title: 'View specialities',
-                                        payload: 'VIEW_SPECIALITIES',
-                                    },
-                                    {
-                                        type: 'postback',
-                                        title: 'GUIDE TO USE',
-                                        payload: 'GUIDE_TO_USE',
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                },
-            };
+            // let response2 = {
+            //     attachment: {
+            //         type: 'template',
+            //         payload: {
+            //             template_type: 'generic',
+            //             elements: [
+            //                 {
+            //                     title: 'Xin chhào mừng bạn đến với Booking Health Care!',
+            //                     subtitle: 'Dưới đây là các lựa chọn',
+            //                     image_url: IMAGE_GET_STARTED,
+            //                     buttons: [
+            //                         {
+            //                             type: 'postback',
+            //                             title: 'How to Book?',
+            //                             payload: 'BOOKING',
+            //                         },
+            //                         {
+            //                             type: 'postback',
+            //                             title: 'View doctors',
+            //                             payload: 'VIEW_DOCTORS',
+            //                         },
+            //                         {
+            //                             type: 'postback',
+            //                             title: 'View specialities',
+            //                             payload: 'VIEW_SPECIALITIES',
+            //                         },
+            //                         {
+            //                             type: 'postback',
+            //                             title: 'GUIDE TO USE',
+            //                             payload: 'GUIDE_TO_USE',
+            //                         },
+            //                     ],
+            //                 },
+            //             ],
+            //         },
+            //     },
+            // };
 
             console.log('check response1', response1);
-            console.log('check response2', response2);
+            // console.log('check response2', response2);
 
             callSendAPI(sender_psid, response1);
-            callSendAPI(sender_psid, response2);
+            // callSendAPI(sender_psid, response2);
             resolve('done');
         } catch (e) {
             reject(e);
@@ -156,7 +156,7 @@ let handleGetStarted2 = () => {
 
             console.log('check response2', response);
 
-            resolve({ response });
+            resolve({ message: response });
         } catch (e) {
             reject(e);
         }
