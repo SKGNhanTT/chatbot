@@ -113,6 +113,57 @@ let handleGetStarted = (sender_psid) => {
     });
 };
 
+let handleGetStarted2 = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response = {
+                attachment: {
+                    type: 'template',
+                    payload: {
+                        template_type: 'generic',
+                        elements: [
+                            {
+                                title: 'Xin chhào mừng bạn đến với Booking Health Care!',
+                                subtitle: 'Dưới đây là các lựa chọn',
+                                image_url: IMAGE_GET_STARTED,
+                                buttons: [
+                                    {
+                                        type: 'postback',
+                                        title: 'How to Book?',
+                                        payload: 'BOOKING',
+                                    },
+                                    {
+                                        type: 'postback',
+                                        title: 'View doctors',
+                                        payload: 'VIEW_DOCTORS',
+                                    },
+                                    {
+                                        type: 'postback',
+                                        title: 'View specialities',
+                                        payload: 'VIEW_SPECIALITIES',
+                                    },
+                                    {
+                                        type: 'postback',
+                                        title: 'GUIDE TO USE',
+                                        payload: 'GUIDE_TO_USE',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                },
+            };
+
+            console.log('check response2', response);
+
+            callSendAPI(sender_psid, response);
+            resolve({ response });
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
 // let sendGetStartedTemplate = async () => {
 //     let response = {
 //         attachment: {
@@ -158,4 +209,5 @@ let handleGetStarted = (sender_psid) => {
 
 module.exports = {
     handleGetStarted: handleGetStarted,
+    handleGetStarted2: handleGetStarted2,
 };
