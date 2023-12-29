@@ -156,6 +156,118 @@ let getMainMenuTemplete = () => {
                             },
                         ],
                     },
+                    {
+                        title: 'Danh sách các chuyên khoa',
+                        subtitle: 'Chọn chuyên khoa bạn muốn tìm kiếm',
+                        image_url:
+                            'https://raw.githubusercontent.com/SKGNhanTT/image/master/image/113208-y-hoc-co-truyen.jpg',
+                        buttons: [
+                            {
+                                type: 'web_url',
+                                title: 'Chuyên khoa 1',
+                                url: 'https://www.facebook.com/profile.php?id=61554766091107',
+                                webview_height_ratio: 'full',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Danh sách các chuyên khoa',
+                        subtitle: 'Chọn chuyên khoa bạn muốn tìm kiếm',
+                        image_url:
+                            'https://raw.githubusercontent.com/SKGNhanTT/image/master/image/113208-y-hoc-co-truyen.jpg',
+                        buttons: [
+                            {
+                                type: 'web_url',
+                                title: 'Chuyên khoa 1',
+                                url: 'https://www.facebook.com/profile.php?id=61554766091107',
+                                webview_height_ratio: 'full',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Danh sách các chuyên khoa',
+                        subtitle: 'Chọn chuyên khoa bạn muốn tìm kiếm',
+                        image_url:
+                            'https://raw.githubusercontent.com/SKGNhanTT/image/master/image/113208-y-hoc-co-truyen.jpg',
+                        buttons: [
+                            {
+                                type: 'web_url',
+                                title: 'Chuyên khoa 1',
+                                url: 'https://www.facebook.com/profile.php?id=61554766091107',
+                                webview_height_ratio: 'full',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Danh sách các chuyên khoa',
+                        subtitle: 'Chọn chuyên khoa bạn muốn tìm kiếm',
+                        image_url:
+                            'https://raw.githubusercontent.com/SKGNhanTT/image/master/image/113208-y-hoc-co-truyen.jpg',
+                        buttons: [
+                            {
+                                type: 'web_url',
+                                title: 'Chuyên khoa 1',
+                                url: 'https://www.facebook.com/profile.php?id=61554766091107',
+                                webview_height_ratio: 'full',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Danh sách các chuyên khoa',
+                        subtitle: 'Chọn chuyên khoa bạn muốn tìm kiếm',
+                        image_url:
+                            'https://raw.githubusercontent.com/SKGNhanTT/image/master/image/113208-y-hoc-co-truyen.jpg',
+                        buttons: [
+                            {
+                                type: 'web_url',
+                                title: 'Chuyên khoa 1',
+                                url: 'https://www.facebook.com/profile.php?id=61554766091107',
+                                webview_height_ratio: 'full',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Danh sách các chuyên khoa',
+                        subtitle: 'Chọn chuyên khoa bạn muốn tìm kiếm',
+                        image_url:
+                            'https://raw.githubusercontent.com/SKGNhanTT/image/master/image/113208-y-hoc-co-truyen.jpg',
+                        buttons: [
+                            {
+                                type: 'web_url',
+                                title: 'Chuyên khoa 1',
+                                url: 'https://www.facebook.com/profile.php?id=61554766091107',
+                                webview_height_ratio: 'full',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Danh sách các chuyên khoa',
+                        subtitle: 'Chọn chuyên khoa bạn muốn tìm kiếm',
+                        image_url:
+                            'https://raw.githubusercontent.com/SKGNhanTT/image/master/image/113208-y-hoc-co-truyen.jpg',
+                        buttons: [
+                            {
+                                type: 'web_url',
+                                title: 'Chuyên khoa 1',
+                                url: 'https://www.facebook.com/profile.php?id=61554766091107',
+                                webview_height_ratio: 'full',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Danh sách các chuyên khoa',
+                        subtitle: 'Chọn chuyên khoa bạn muốn tìm kiếm',
+                        image_url:
+                            'https://raw.githubusercontent.com/SKGNhanTT/image/master/image/113208-y-hoc-co-truyen.jpg',
+                        buttons: [
+                            {
+                                type: 'web_url',
+                                title: 'Chuyên khoa 1',
+                                url: 'https://www.facebook.com/profile.php?id=61554766091107',
+                                webview_height_ratio: 'full',
+                            },
+                        ],
+                    },
                 ],
             },
         },
