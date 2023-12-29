@@ -156,7 +156,7 @@ let handleGetStarted2 = () => {
 
             console.log('check response2', response);
 
-            resolve({ message: response });
+            resolve({ ...response });
         } catch (e) {
             reject(e);
         }
