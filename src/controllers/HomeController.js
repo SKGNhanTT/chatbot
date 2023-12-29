@@ -141,13 +141,13 @@ async function handlePostback(sender_psid, received_postback) {
                                 buttons: [
                                     {
                                         type: 'postback',
-                                        title: 'Yes!',
-                                        payload: 'yes',
+                                        title: 'How to Schedule an Examination?',
+                                        payload: 'BOOKING',
                                     },
                                     {
                                         type: 'postback',
-                                        title: 'No!',
-                                        payload: 'no',
+                                        title: 'View specialities',
+                                        payload: 'VIEW_SPECIALITIES',
                                     },
                                 ],
                             },
