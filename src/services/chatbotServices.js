@@ -61,44 +61,6 @@ let handleGetStarted = (sender_psid) => {
             let response = {
                 text: `Hello ${username}, Welcome to Booking Health Care!`,
             };
-            // let response2 = {
-            //     attachment: {
-            //         type: 'template',
-            //         payload: {
-            //             template_type: 'generic',
-            //             elements: [
-            //                 {
-            //                     title: 'Xin chhào mừng bạn đến với Booking Health Care!',
-            //                     subtitle: 'Dưới đây là các lựa chọn',
-            //                     image_url: IMAGE_GET_STARTED,
-            //                     buttons: [
-            //                         {
-            //                             type: 'postback',
-            //                             title: 'How to Book?',
-            //                             payload: 'BOOKING',
-            //                         },
-            //                         {
-            //                             type: 'postback',
-            //                             title: 'View doctors',
-            //                             payload: 'VIEW_DOCTORS',
-            //                         },
-            //                         {
-            //                             type: 'postback',
-            //                             title: 'View specialities',
-            //                             payload: 'VIEW_SPECIALITIES',
-            //                         },
-            //                         {
-            //                             type: 'postback',
-            //                             title: 'GUIDE TO USE',
-            //                             payload: 'GUIDE_TO_USE',
-            //                         },
-            //                     ],
-            //                 },
-            //             ],
-            //         },
-            //     },
-            // };
-
             callSendAPI(sender_psid, response);
             resolve('done');
         } catch (e) {
