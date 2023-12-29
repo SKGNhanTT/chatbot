@@ -61,39 +61,8 @@ let handleGetStarted = (sender_psid) => {
             let response = {
                 text: `Hello ${username}, Welcome to Booking Health Care!`,
             };
-            let response2 = {
-                attachment: {
-                    type: 'template',
-                    payload: {
-                        template_type: 'generic',
-                        elements: [
-                            {
-                                title: 'What can I do for you?',
-                                subtitle: 'Here is the guide on how to use.',
-                                image_url:
-                                    'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png',
-                                buttons: [
-                                    {
-                                        type: 'postback',
-                                        title: 'Schedule an Examination',
-                                        payload: 'BOOKING',
-                                    },
-                                    {
-                                        type: 'postback',
-                                        title: 'View specialities',
-                                        payload: 'VIEW_SPECIALITIES',
-                                    },
-                                    {
-                                        type: 'postback',
-                                        title: 'View doctors',
-                                        payload: 'VIEW_DOCTORS',
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                },
-            };
+            let response2 = getStartedTemplate();
+
             callSendAPI(sender_psid, response);
             callSendAPI(sender_psid, response2);
             resolve('done');
@@ -103,6 +72,91 @@ let handleGetStarted = (sender_psid) => {
     });
 };
 
+let getStartedTemplate = () => {
+    let response = {
+        attachment: {
+            type: 'template',
+            payload: {
+                template_type: 'generic',
+                elements: [
+                    {
+                        title: 'What can I do for you?',
+                        subtitle: 'Here is the guide on how to use.',
+                        image_url:
+                            'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png',
+                        buttons: [
+                            {
+                                type: 'postback',
+                                title: 'Schedule an Examination',
+                                payload: 'BOOKING',
+                            },
+                            {
+                                type: 'postback',
+                                title: 'View specialities',
+                                payload: 'VIEW_SPECIALITIES',
+                            },
+                            {
+                                type: 'postback',
+                                title: 'View doctors',
+                                payload: 'VIEW_DOCTORS',
+                            },
+                        ],
+                    },
+                ],
+            },
+        },
+    };
+    return response;
+};
+
+let handleGetSpecialties = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response = {
+                attachment: {
+                    type: 'template',
+                    payload: {
+                        template_type: 'generic',
+                        elements: [
+                            {
+                                title: 'Danh sách các chuyên khoa',
+                                subtitle: 'Chọn chuyên khoa bạn muốn tìm kiếm',
+                                image_url:
+                                    'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png',
+                                buttons: [
+                                    {
+                                        type: 'postback',
+                                        title: 'Chuyên khoa 1',
+                                        payload: 'SPECIALTY_1',
+                                    },
+                                ],
+                            },
+                            {
+                                title: 'Danh sách các chuyên khoa',
+                                subtitle: 'Chọn chuyên khoa bạn muốn tìm kiếm',
+                                image_url:
+                                    'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png',
+                                buttons: [
+                                    {
+                                        type: 'postback',
+                                        title: 'Chuyên khoa 1',
+                                        payload: 'SPECIALTY_1',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                },
+            };
+            callSendAPI(sender_psid, response);
+            resolve('done');
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
 module.exports = {
     handleGetStarted: handleGetStarted,
+    handleGetSpecialties: handleGetSpecialties,
 };
