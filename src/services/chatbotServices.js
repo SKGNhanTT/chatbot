@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
-let callSendAPI = (sender_psid, response) => {
+let callSendAPI = async (sender_psid, response) => {
     // Construct the message body
     let request_body = {
         recipient: {
@@ -13,6 +13,8 @@ let callSendAPI = (sender_psid, response) => {
         message: response,
     };
 
+    await senddMarkSeen(sender_psid);
+    await sendTypingOn(sender_psid);
     // Send the HTTP request to the Messenger Platform
     request(
         {
@@ -24,6 +26,54 @@ let callSendAPI = (sender_psid, response) => {
         (err, res, body) => {
             if (!err) {
                 console.log('message sent!');
+            } else {
+                console.error('Unable to send message:' + err);
+            }
+        }
+    );
+};
+
+let sendTypingOn = (sender_psid) => {
+    let request_body = {
+        recipient: {
+            id: sender_psid,
+        },
+        sender_action: 'typing_on',
+    };
+    request(
+        {
+            uri: 'https://graph.facebook.com/v2.6/me/messages',
+            qs: { access_token: PAGE_ACCESS_TOKEN },
+            method: 'POST',
+            json: request_body,
+        },
+        (err, res, body) => {
+            if (!err) {
+                console.log('typing on');
+            } else {
+                console.error('Unable to send message:' + err);
+            }
+        }
+    );
+};
+
+let senddMarkSeen = (sender_psid) => {
+    let request_body = {
+        recipient: {
+            id: sender_psid,
+        },
+        sender_action: 'mark_seen',
+    };
+    request(
+        {
+            uri: 'https://graph.facebook.com/v2.6/me/messages',
+            qs: { access_token: PAGE_ACCESS_TOKEN },
+            method: 'POST',
+            json: request_body,
+        },
+        (err, res, body) => {
+            if (!err) {
+                console.log('mark seen');
             } else {
                 console.error('Unable to send message:' + err);
             }
