@@ -10,7 +10,7 @@ let callSendAPI = (sender_psid, response) => {
         recipient: {
             id: sender_psid,
         },
-        message: { ...response },
+        message: response,
     };
     console.log('check message', request_body.message);
 
@@ -64,6 +64,7 @@ let handleGetStarted = (sender_psid) => {
             };
             let response2 = sendGetStartedTemplate();
 
+            console.log('check response1', response1);
             console.log('check response2', response2);
 
             callSendAPI(sender_psid, response1);
