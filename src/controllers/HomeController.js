@@ -147,6 +147,7 @@ function callSendAPI(sender_psid, response) {
         },
         message: response,
     };
+    console.log('check message controller', request_body.message);
 
     // Send the HTTP request to the Messenger Platform
     request(
