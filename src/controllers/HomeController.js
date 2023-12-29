@@ -134,20 +134,29 @@ async function handlePostback(sender_psid, received_postback) {
                         template_type: 'generic',
                         elements: [
                             {
-                                title: 'Is this the right picture?',
-                                subtitle: 'Tap a button to answer.',
-                                image_url:
-                                    'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png',
+                                title: 'Xin chhào mừng bạn đến với Booking Health Care!',
+                                subtitle: 'Dưới đây là các lựa chọn',
+                                image_url: IMAGE_GET_STARTED,
                                 buttons: [
                                     {
                                         type: 'postback',
-                                        title: 'Yes!',
-                                        payload: 'yes',
+                                        title: 'How to Book?',
+                                        payload: 'BOOKING',
                                     },
                                     {
                                         type: 'postback',
-                                        title: 'No!',
-                                        payload: 'no',
+                                        title: 'View doctors',
+                                        payload: 'VIEW_DOCTORS',
+                                    },
+                                    {
+                                        type: 'postback',
+                                        title: 'View specialities',
+                                        payload: 'VIEW_SPECIALITIES',
+                                    },
+                                    {
+                                        type: 'postback',
+                                        title: 'GUIDE TO USE',
+                                        payload: 'GUIDE_TO_USE',
                                     },
                                 ],
                             },
