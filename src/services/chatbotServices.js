@@ -6,11 +6,13 @@ const IMAGE_GET_STARTED =
     'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png';
 let callSendAPI = (sender_psid, response) => {
     // Construct the message body
+    let res = { ...response };
     let request_body = {
         recipient: {
             id: sender_psid,
         },
-        message: response,
+
+        message: res,
     };
     console.log('check message', request_body.message);
 
