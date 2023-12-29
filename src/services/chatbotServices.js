@@ -135,9 +135,10 @@ let getMainMenuTemplete = () => {
                             'https://raw.githubusercontent.com/SKGNhanTT/image/master/image/113208-cot-song.jpg',
                         buttons: [
                             {
-                                type: 'postback',
+                                type: 'web_url',
                                 title: 'Chuyên khoa 1',
-                                payload: 'SPECIALTY_1',
+                                url: 'https://www.facebook.com/profile.php?id=61554766091107',
+                                webview_height_ratio: 'full',
                             },
                         ],
                     },
@@ -148,9 +149,10 @@ let getMainMenuTemplete = () => {
                             'https://raw.githubusercontent.com/SKGNhanTT/image/master/image/113208-y-hoc-co-truyen.jpg',
                         buttons: [
                             {
-                                type: 'postback',
+                                type: 'web_url',
                                 title: 'Chuyên khoa 1',
-                                payload: 'SPECIALTY_1',
+                                url: 'https://www.facebook.com/profile.php?id=61554766091107',
+                                webview_height_ratio: 'full',
                             },
                         ],
                     },
