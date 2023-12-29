@@ -127,44 +127,7 @@ async function handlePostback(sender_psid, received_postback) {
             break;
         case 'GET_STARTED':
             await chatbotServices.handleGetStarted(sender_psid);
-            response = {
-                attachment: {
-                    type: 'template',
-                    payload: {
-                        template_type: 'generic',
-                        elements: [
-                            {
-                                title: 'What can I do for you?',
-                                subtitle: 'Here is the guide on how to use.',
-                                image_url:
-                                    'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png',
-                                buttons: [
-                                    {
-                                        type: 'postback',
-                                        title: 'Schedule an Examination',
-                                        payload: 'BOOKING',
-                                    },
-                                    {
-                                        type: 'postback',
-                                        title: 'View specialities',
-                                        payload: 'VIEW_SPECIALITIES',
-                                    },
-                                    {
-                                        type: 'postback',
-                                        title: 'View doctors',
-                                        payload: 'VIEW_DOCTORS',
-                                    },
-                                    // {
-                                    //     type: 'postback',
-                                    //     title: 'Guide To Use',
-                                    //     payload: 'GUIDE_TO_USE',
-                                    // },
-                                ],
-                            },
-                        ],
-                    },
-                },
-            };
+
             // handleMessage(sender_psid);
             break;
         default:

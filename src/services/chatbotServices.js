@@ -61,7 +61,41 @@ let handleGetStarted = (sender_psid) => {
             let response = {
                 text: `Hello ${username}, Welcome to Booking Health Care!`,
             };
+            let response2 = {
+                attachment: {
+                    type: 'template',
+                    payload: {
+                        template_type: 'generic',
+                        elements: [
+                            {
+                                title: 'What can I do for you?',
+                                subtitle: 'Here is the guide on how to use.',
+                                image_url:
+                                    'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png',
+                                buttons: [
+                                    {
+                                        type: 'postback',
+                                        title: 'Schedule an Examination',
+                                        payload: 'BOOKING',
+                                    },
+                                    {
+                                        type: 'postback',
+                                        title: 'View specialities',
+                                        payload: 'VIEW_SPECIALITIES',
+                                    },
+                                    {
+                                        type: 'postback',
+                                        title: 'View doctors',
+                                        payload: 'VIEW_DOCTORS',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                },
+            };
             callSendAPI(sender_psid, response);
+            callSendAPI(sender_psid, response2);
             resolve('done');
         } catch (e) {
             reject(e);
