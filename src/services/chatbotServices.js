@@ -112,48 +112,53 @@ let getStartedTemplate = () => {
 let handleGetSpecialties = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let response = {
-                attachment: {
-                    type: 'template',
-                    payload: {
-                        template_type: 'generic',
-                        elements: [
-                            {
-                                title: 'Danh sách các chuyên khoa',
-                                subtitle: 'Chọn chuyên khoa bạn muốn tìm kiếm',
-                                image_url:
-                                    'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png',
-                                buttons: [
-                                    {
-                                        type: 'postback',
-                                        title: 'Chuyên khoa 1',
-                                        payload: 'SPECIALTY_1',
-                                    },
-                                ],
-                            },
-                            {
-                                title: 'Danh sách các chuyên khoa',
-                                subtitle: 'Chọn chuyên khoa bạn muốn tìm kiếm',
-                                image_url:
-                                    'https://cdn.bookingcare.vn/fo/2023/11/02/134537-group-12314.png',
-                                buttons: [
-                                    {
-                                        type: 'postback',
-                                        title: 'Chuyên khoa 1',
-                                        payload: 'SPECIALTY_1',
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                },
-            };
+            let response = getMainMenuTemplete();
             callSendAPI(sender_psid, response);
             resolve('done');
         } catch (e) {
             reject(e);
         }
     });
+};
+
+let getMainMenuTemplete = () => {
+    let response = {
+        attachment: {
+            type: 'template',
+            payload: {
+                template_type: 'generic',
+                elements: [
+                    {
+                        title: 'Danh sách các chuyên khoa',
+                        subtitle: 'Chọn chuyên khoa bạn muốn tìm kiếm',
+                        image_url:
+                            'https://raw.githubusercontent.com/SKGNhanTT/image/master/image/113208-cot-song.jpg',
+                        buttons: [
+                            {
+                                type: 'postback',
+                                title: 'Chuyên khoa 1',
+                                payload: 'SPECIALTY_1',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Danh sách các chuyên khoa',
+                        subtitle: 'Chọn chuyên khoa bạn muốn tìm kiếm',
+                        image_url:
+                            'https://raw.githubusercontent.com/SKGNhanTT/image/master/image/113208-y-hoc-co-truyen.jpg',
+                        buttons: [
+                            {
+                                type: 'postback',
+                                title: 'Chuyên khoa 1',
+                                payload: 'SPECIALTY_1',
+                            },
+                        ],
+                    },
+                ],
+            },
+        },
+    };
+    return response;
 };
 
 module.exports = {
