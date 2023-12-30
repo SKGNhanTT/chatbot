@@ -210,7 +210,7 @@ let setupPersistentMenu = async (req, res) => {
                     {
                         type: 'web_url',
                         title: 'Facebook Fanpage',
-                        url: 'https://www.facebook.com/profile.php?id=61554766091107',
+                        url: 'https://www.facebook.com/bookinghealthcare/',
                         webview_height_ratio: 'full',
                     },
                     {
